@@ -1,126 +1,23 @@
-/* FileUpload.css - File Upload Component Styles */
-
-.file-upload-container {
-  width: 100%;
+.fileupload-container {
+  margin-top: 10px;
 }
 
-.upload-area {
-  border: 2px dashed #cbd5e1;
-  border-radius: 0.75rem;
-  padding: 3rem 2rem;
-  text-align: center;
-  background-color: #f8fafc;
-  transition: all 0.2s ease;
+.fileupload-btn {
+  padding: 0.7rem 1.7rem;
+  font-size: 1.06rem;
+  background: linear-gradient(92deg, #15ffd2 20%, #0a74e6 100%);
+  border: none;
+  border-radius: 7px;
+  color: #0a1d1f;
+  font-weight: 700;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
+  margin-top: 6px;
+  box-shadow: 0 0 9px #0dffd3bb;
+  letter-spacing: 1.1px;
+  text-shadow: 0 0 8px #26fff3;
+  transition: background 0.18s, color 0.13s;
 }
-
-.upload-area:hover {
-  border-color: #3b82f6;
-  background-color: #f0f9ff;
-}
-
-.upload-area.drag-active {
-  border-color: #3b82f6;
-  background-color: #dbeafe;
-}
-
-.upload-area.analyzing {
-  cursor: not-allowed;
-  opacity: 0.7;
-}
-
-.upload-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.upload-icon {
-  color: #94a3b8;
-  transition: color 0.2s ease;
-}
-
-.upload-area:hover .upload-icon {
-  color: #3b82f6;
-}
-
-.upload-area.drag-active .upload-icon {
-  color: #3b82f6;
-}
-
-.upload-content h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #374151;
-  margin: 0;
-}
-
-.upload-content p {
-  color: #6b7280;
-  margin: 0;
-  line-height: 1.5;
-}
-
-.click-text {
-  color: #3b82f6;
-  font-weight: 500;
-}
-
-.file-info {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #9ca3af;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
-}
-
-.selected-file {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  padding: 0.75rem;
-  background-color: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 0.5rem;
-  color: #16a34a;
-  font-size: 0.875rem;
-}
-
-.loading-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.loading-content h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #374151;
-  margin: 0;
-}
-
-.loading-content p {
-  color: #6b7280;
-  margin: 0;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .upload-area {
-    padding: 2rem 1rem;
-  }
-  
-  .upload-content h3 {
-    font-size: 1.125rem;
-  }
-  
-  .file-info {
-    font-size: 0.8rem;
-  }
+.fileupload-btn:hover {
+  background: linear-gradient(89deg, #0e4dfc 25%, #26ffe2 90%);
+  color: #fff;
 }
