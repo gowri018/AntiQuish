@@ -30,20 +30,7 @@ function App() {
         <Header />
         <main className="main-content" style={{ padding: "1rem" }}>
           <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <QRScanner onUrlScanned={handleUrlScanned} />
-                  {scannedUrl && (
-                    <ThreatAnalysis
-                      url={scannedUrl}
-                      onAnalysisComplete={handleAnalysisComplete}
-                    />
-                  )}
-                </>
-              }
-            />
+            <Route path="/url-expander" element={<UrlExpander />} />
             <Route
               path="/results"
               element={
