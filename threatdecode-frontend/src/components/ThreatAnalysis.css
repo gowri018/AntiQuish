@@ -108,7 +108,6 @@
   margin-top: 1rem;
   font-size: 1.03rem;
   font-weight: 600;
-<<<<<<< HEAD
   color: #374151;
   margin: 0 0 0.25rem 0;
 }
@@ -333,9 +332,4 @@
 .visit-url-btn.safe {
   background-color: #166534;
 }
-
-=======
-  border: 1px solid #11ffcc41;
-  text-shadow: 0 0 7px #00fff6;
->>>>>>> 2ca437ee52790cbbf86bed088351a44d27b85bf3
 }

@@ -43,10 +43,9 @@ function App() {
               }
             />
             <Route path="/about" element={<About />} />
-<<<<<<< HEAD
+HEAD
             {/* NEW ROUTE */}
-=======
->>>>>>> 2ca437ee52790cbbf86bed088351a44d27b85bf3
+            2ca437ee52790cbbf86bed088351a44d27b85bf3
             <Route path="/url-expander" element={<UrlExpander />} />
             <Route path="*" element={<QRScanner onUrlScanned={handleUrlScanned} />} />
           </Routes>
