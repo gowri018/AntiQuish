@@ -1,21 +1,26 @@
-/* Cyberpunk Theme - Global Styles */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+/* Perplexity-Inspired Theme - Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-  --cyber-primary: #00ffff;
-  --cyber-secondary: #ff00ff;
-  --cyber-accent: #ffff00;
-  --cyber-success: #00ff41;
-  --cyber-danger: #ff073a;
-  --cyber-warning: #ffa500;
-  --cyber-dark: #0a0a0a;
-  --cyber-dark-alt: #1a1a2e;
-  --cyber-dark-card: #16213e;
-  --cyber-text: #e0e6ed;
-  --cyber-text-dim: #a0a0a0;
-  --cyber-border: #00ffff;
-  --cyber-glow: 0 0 10px var(--cyber-primary);
-  --cyber-glow-strong: 0 0 20px var(--cyber-primary), 0 0 30px var(--cyber-primary);
+  /* Perplexity-inspired color palette */
+  --primary-blue: #3b82f6;
+  --primary-blue-dark: #1d4ed8;
+  --primary-blue-light: #60a5fa;
+  --accent-purple: #8b5cf6;
+  --accent-purple-dark: #7c3aed;
+  --success-green: #10b981;
+  --warning-amber: #f59e0b;
+  --danger-red: #ef4444;
+  --cyber-dark: #0f172a;
+  --cyber-dark-alt: #1e293b;
+  --cyber-dark-card: #334155;
+  --cyber-surface: #475569;
+  --cyber-border: #64748b;
+  --cyber-text: #f1f5f9;
+  --cyber-text-secondary: #cbd5e1;
+  --cyber-text-dim: #94a3b8;
+  --cyber-glow: 0 0 10px var(--primary-blue);
+  --cyber-glow-strong: 0 0 20px var(--primary-blue), 0 0 30px var(--primary-blue-light);
 }
 
 * {
@@ -25,8 +30,8 @@
 }
 
 body {
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
   color: var(--cyber-text);
   overflow-x: hidden;
   min-height: 100vh;
@@ -39,7 +44,7 @@ body {
   background-attachment: fixed;
 }
 
-/* Animated Background Grid */
+/* Subtle Background Pattern */
 .cyber-grid {
   position: fixed;
   top: 0;
@@ -47,10 +52,10 @@ body {
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: grid-move 20s linear infinite;
+    linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-move 30s linear infinite;
   z-index: -2;
 }
 
@@ -60,14 +65,14 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at center, transparent 0%, rgba(10, 10, 10, 0.4) 100%);
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(15, 23, 42, 0.3) 100%);
   pointer-events: none;
   z-index: -1;
 }
 
 @keyframes grid-move {
   0% { transform: translate(0, 0); }
-  100% { transform: translate(50px, 50px); }
+  100% { transform: translate(40px, 40px); }
 }
 
 .main-content {
@@ -78,98 +83,129 @@ body {
   z-index: 1;
 }
 
-/* Cyber Card Styling */
+/* Card Styling */
 .cyber-card {
-  background: rgba(22, 33, 62, 0.9);
-  border: 2px solid var(--cyber-primary);
-  border-radius: 10px;
+  background: rgba(51, 65, 85, 0.8);
+  border: 1px solid var(--cyber-border);
+  border-radius: 12px;
   padding: 2rem;
   margin: 1rem 0;
-  box-shadow: var(--cyber-glow), inset 0 0 20px rgba(0, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(59, 130, 246, 0.1);
+  backdrop-filter: blur(12px);
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-}
-
-.cyber-card::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, var(--cyber-primary), var(--cyber-secondary), var(--cyber-accent), var(--cyber-primary));
-  border-radius: inherit;
-  z-index: -1;
-  animation: border-glow 3s linear infinite;
-}
-
-@keyframes border-glow {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
 }
 
 .cyber-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--cyber-glow-strong), inset 0 0 30px rgba(0, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(59, 130, 246, 0.2);
+  border-color: var(--primary-blue);
 }
 
-/* Cyber Button Styling */
+/* Button Styling */
 .cyber-button {
-  background: linear-gradient(45deg, var(--cyber-primary), var(--cyber-secondary));
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
   border: none;
-  padding: 0.8rem 2rem;
-  color: var(--cyber-dark);
-  font-family: 'Orbitron', monospace;
-  font-weight: 700;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 8px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
-  text-shadow: none;
-}
-
-.cyber-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  transition: left 0.5s;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
 .cyber-button:hover {
-  box-shadow: var(--cyber-glow-strong);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--primary-blue-light), var(--primary-blue));
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
 }
 
-.cyber-button:hover::before {
-  left: 100%;
+.cyber-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
 }
 
-/* Cyber Input Styling */
-.cyber-input {
-  background: rgba(10, 10, 10, 0.8);
-  border: 2px solid var(--cyber-primary);
-  border-radius: 5px;
-  padding: 1rem;
+.cyber-button:disabled:hover {
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+  transform: none;
+}
+
+/* Secondary button variant */
+.cyber-button-secondary {
+  background: rgba(71, 85, 105, 0.8);
   color: var(--cyber-text);
-  font-family: 'Rajdhani', monospace;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+  border: 1px solid var(--cyber-border);
+}
+
+.cyber-button-secondary:hover {
+  background: rgba(100, 116, 139, 0.8);
+  border-color: var(--primary-blue);
+}
+
+/* Success button variant */
+.cyber-button-success {
+  background: linear-gradient(135deg, var(--success-green), #059669);
+}
+
+.cyber-button-success:hover {
+  background: linear-gradient(135deg, #34d399, var(--success-green));
+}
+
+/* Warning button variant */
+.cyber-button-warning {
+  background: linear-gradient(135deg, var(--warning-amber), #d97706);
+}
+
+.cyber-button-warning:hover {
+  background: linear-gradient(135deg, #fbbf24, var(--warning-amber));
+}
+
+/* Danger button variant */
+.cyber-button-danger {
+  background: linear-gradient(135deg, var(--danger-red), #dc2626);
+}
+
+.cyber-button-danger:hover {
+  background: linear-gradient(135deg, #f87171, var(--danger-red));
+}
+
+/* Input Styling */
+.cyber-input {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--cyber-border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: var(--cyber-text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
   outline: none;
+  width: 100%;
 }
 
 .cyber-input:focus {
-  box-shadow: var(--cyber-glow);
-  border-color: var(--cyber-accent);
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: rgba(15, 23, 42, 0.9);
 }
 
 .cyber-input::placeholder {
@@ -178,51 +214,50 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
-  color: var(--cyber-primary);
-  text-shadow: var(--cyber-glow);
-  letter-spacing: 1px;
+  color: var(--cyber-text);
+  letter-spacing: -0.025em;
 }
 
 h1 {
-  font-size: 2.5rem;
-  text-transform: uppercase;
+  font-size: 2.25rem;
+  font-weight: 800;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 1.875rem;
   margin-bottom: 1rem;
 }
 
 h3 {
   font-size: 1.5rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.75rem;
 }
 
 p {
   line-height: 1.6;
   margin-bottom: 1rem;
-  color: var(--cyber-text);
+  color: var(--cyber-text-secondary);
 }
 
 /* Code blocks */
 code {
-  background: rgba(0, 0, 0, 0.6);
-  color: var(--cyber-success);
-  padding: 0.2rem 0.5rem;
-  border-radius: 3px;
-  font-family: 'Courier New', monospace;
-  border: 1px solid var(--cyber-primary);
-  text-shadow: 0 0 5px var(--cyber-success);
+  background: rgba(15, 23, 42, 0.8);
+  color: var(--success-green);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.875rem;
+  border: 1px solid var(--cyber-border);
 }
 
 /* Loading Spinner */
 .loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 3px solid rgba(0, 255, 255, 0.3);
-  border-top: 3px solid var(--cyber-primary);
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(59, 130, 246, 0.2);
+  border-top: 3px solid var(--primary-blue);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 0 auto;
@@ -235,47 +270,51 @@ code {
 
 /* Error Messages */
 .error-message {
-  background: rgba(255, 7, 58, 0.1);
-  border: 1px solid var(--cyber-danger);
-  border-radius: 5px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
   padding: 1rem;
-  color: var(--cyber-danger);
-  font-family: 'Orbitron', monospace;
-  font-weight: 600;
+  color: var(--danger-red);
+  font-weight: 500;
   margin: 1rem 0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 0 10px rgba(255, 7, 58, 0.3);
 }
 
 /* Success Messages */
 .success-message {
-  background: rgba(0, 255, 65, 0.1);
-  border: 1px solid var(--cyber-success);
-  border-radius: 5px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 8px;
   padding: 1rem;
-  color: var(--cyber-success);
-  font-family: 'Orbitron', monospace;
-  font-weight: 600;
+  color: var(--success-green);
+  font-weight: 500;
   margin: 1rem 0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
 }
 
-/* Glitch Effect */
-@keyframes glitch {
-  0%, 100% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
+/* Icon buttons */
+.cyber-icon-button {
+  background: rgba(71, 85, 105, 0.6);
+  border: 1px solid var(--cyber-border);
+  color: var(--cyber-text-secondary);
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.glitch {
-  animation: glitch 0.3s infinite;
+.cyber-icon-button:hover {
+  background: rgba(100, 116, 139, 0.8);
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+  transform: translateY(-1px);
 }
 
 /* Responsive Design */
@@ -293,14 +332,14 @@ code {
   }
   
   .cyber-button {
-    padding: 0.7rem 1.5rem;
-    font-size: 0.9rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
   }
 }
 
 @media (max-width: 480px) {
   h1 {
-    font-size: 1.8rem;
+    font-size: 1.75rem;
   }
   
   .cyber-card {
@@ -310,7 +349,7 @@ code {
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -318,10 +357,10 @@ code {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--cyber-primary);
-  border-radius: 4px;
+  background: var(--cyber-border);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--cyber-secondary);
+  background: var(--primary-blue);
 }

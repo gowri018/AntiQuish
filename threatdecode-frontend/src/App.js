@@ -6,11 +6,7 @@ import QRScanner from "./components/QRScanner";
 import ThreatAnalysis from "./components/ThreatAnalysis";
 import Results from "./components/Results";
 import About from "./components/About";
-<<<<<<< HEAD
 import UrlExpander from "./components/UrlExpander"; // NEW IMPORT
-=======
-import UrlExpander from "./components/UrlExpander";
->>>>>>> 2ca437ee52790cbbf86bed088351a44d27b85bf3
 
 import "./App.css";
 

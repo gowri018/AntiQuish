@@ -1,22 +1,22 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Html5QrcodeScanner, Html5Qrcode } from 'html5-qrcode';
-import { Camera, Upload, AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
-import FileUpload from './FileUpload';
+import { Camera, Upload, AlertTriangle, FileImage, Scan } from 'lucide-react';
 import ThreatAnalysis from './ThreatAnalysis';
 import './QRScanner.css';
 
-const QRScanner = () => {
+const QRScanner = ({ onUrlScanned }) => {
   const [isScanning, setIsScanning] = useState(false);
   const [scannedUrl, setScannedUrl] = useState('');
-  const [scannerMode, setScannerMode] = useState('camera'); // 'camera' or 'upload'
+  const [scannerMode, setScannerMode] = useState('camera');
   const [error, setError] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
   const scannerRef = useRef(null);
   const html5QrCodeRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     return () => {
-      // Cleanup scanner on component unmount
       if (html5QrCodeRef.current) {
         html5QrCodeRef.current.clear().catch(console.error);
       }
@@ -48,10 +48,12 @@ const QRScanner = () => {
           setScannedUrl(decodedText);
           setIsScanning(false);
           html5QrCode.clear();
+          if (onUrlScanned) {
+            onUrlScanned(decodedText);
+          }
           analyzeUrl(decodedText);
         },
         (errorMessage) => {
-          // Handle scan errors silently - they're usually just "no QR found"
           console.log('Scan error:', errorMessage);
         }
       );
@@ -73,6 +75,7 @@ const QRScanner = () => {
     try {
       setError('');
       setIsAnalyzing(true);
+      setSelectedFile(file);
 
       const html5QrCode = new Html5Qrcode("qr-file-scanner");
       
@@ -80,6 +83,9 @@ const QRScanner = () => {
       console.log('File scan result:', result);
       
       setScannedUrl(result);
+      if (onUrlScanned) {
+        onUrlScanned(result);
+      }
       analyzeUrl(result);
     } catch (err) {
       console.error('File scan error:', err);
@@ -89,9 +95,19 @@ const QRScanner = () => {
     }
   };
 
+  const handleFileSelect = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      handleFileUpload(file);
+    }
+  };
+
+  const openFileDialog = () => {
+    fileInputRef.current?.click();
+  };
+
   const analyzeUrl = async (url) => {
     setIsAnalyzing(true);
-    // This will be handled by the ThreatAnalysis component
     console.log('Starting analysis for URL:', url);
   };
 
@@ -100,13 +116,21 @@ const QRScanner = () => {
     setError('');
     setIsAnalyzing(false);
     setScannerMode('camera');
+    setSelectedFile(null);
   };
 
   return (
-    <div className="qr-scanner-container">
-      <div className="scanner-header">
-        <h1>ThreatDecode QR Scanner</h1>
-        <p>Scan QR codes to detect potential phishing threats</p>
+    <div className="qr-scanner-page">
+      <div className="cyber-card scanner-header-card">
+        <div className="scanner-header">
+          <div className="header-icon">
+            <Scan size={48} className="main-icon" />
+          </div>
+          <h1 className="scanner-title">QR Code Scanner</h1>
+          <p className="scanner-subtitle">
+            Scan QR codes using your camera or upload an image to detect potential security threats
+          </p>
+        </div>
       </div>
 
       {error && (
@@ -117,40 +141,45 @@ const QRScanner = () => {
       )}
 
       {!scannedUrl && (
-        <div className="scanner-modes">
-          <button
-            className={`mode-button ${scannerMode === 'camera' ? 'active' : ''}`}
-            onClick={() => setScannerMode('camera')}
-          >
-            <Camera size={20} />
-            Camera Scanner
-          </button>
-          <button
-            className={`mode-button ${scannerMode === 'upload' ? 'active' : ''}`}
-            onClick={() => setScannerMode('upload')}
-          >
-            <Upload size={20} />
-            Upload Image
-          </button>
+        <div className="cyber-card scanner-modes-card">
+          <h3 className="section-title">Choose Scanning Method</h3>
+          <div className="scanner-modes">
+            <button
+              className={`mode-button ${scannerMode === 'camera' ? 'active' : ''}`}
+              onClick={() => setScannerMode('camera')}
+            >
+              <Camera size={24} />
+              <span>Camera Scanner</span>
+            </button>
+            <button
+              className={`mode-button ${scannerMode === 'upload' ? 'active' : ''}`}
+              onClick={() => setScannerMode('upload')}
+            >
+              <Upload size={24} />
+              <span>Upload Image</span>
+            </button>
+          </div>
         </div>
       )}
 
       {!scannedUrl && scannerMode === 'camera' && (
-        <div className="camera-scanner">
+        <div className="cyber-card camera-scanner-card">
+          <h3 className="section-title">Camera Scanner</h3>
           {!isScanning ? (
             <div className="scanner-placeholder">
-              <Camera size={64} className="camera-icon" />
-              <h3>Ready to Scan</h3>
-              <p>Click start to begin scanning QR codes with your camera</p>
-              <button className="start-scan-btn" onClick={startCameraScanner}>
-                Start Camera Scanner
+              <Camera size={64} className="placeholder-icon" />
+              <h4>Ready to Scan</h4>
+              <p>Click the button below to start scanning QR codes with your camera</p>
+              <button className="cyber-button start-scan-btn" onClick={startCameraScanner}>
+                <Camera size={20} />
+                <span>Start Camera Scanner</span>
               </button>
             </div>
           ) : (
             <div className="scanner-active">
               <div id="qr-scanner-container"></div>
-              <button className="stop-scan-btn" onClick={stopScanner}>
-                Stop Scanner
+              <button className="cyber-button cyber-button-danger stop-scan-btn" onClick={stopScanner}>
+                <span>Stop Scanner</span>
               </button>
             </div>
           )}
@@ -158,16 +187,56 @@ const QRScanner = () => {
       )}
 
       {!scannedUrl && scannerMode === 'upload' && (
-        <div className="file-upload-section">
-          <FileUpload onFileUpload={handleFileUpload} isAnalyzing={isAnalyzing} />
+        <div className="cyber-card file-upload-card">
+          <h3 className="section-title">Upload QR Code Image</h3>
+          <div className="file-upload-section">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleFileSelect}
+              style={{ display: 'none' }}
+            />
+            
+            {isAnalyzing ? (
+              <div className="upload-analyzing">
+                <div className="loading-spinner"></div>
+                <h4>Analyzing QR Code...</h4>
+                <p>Please wait while we process your image</p>
+              </div>
+            ) : (
+              <div className="upload-area">
+                <FileImage size={48} className="upload-icon" />
+                <h4>Select QR Code Image</h4>
+                <p>Upload an image file containing a QR code for analysis</p>
+                
+                <button className="cyber-button upload-btn" onClick={openFileDialog}>
+                  <Upload size={20} />
+                  <span>Choose Image File</span>
+                </button>
+                
+                <div className="file-info">
+                  <p>Supported formats: JPEG, PNG, GIF, WebP (Max 10MB)</p>
+                </div>
+                
+                {selectedFile && (
+                  <div className="selected-file">
+                    <FileImage size={16} />
+                    <span>Selected: {selectedFile.name}</span>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
           <div id="qr-file-scanner" style={{ display: 'none' }}></div>
         </div>
       )}
 
       {scannedUrl && (
-        <div className="scan-results">
+        <div className="cyber-card scan-results-card">
+          <h3 className="section-title">QR Code Detected</h3>
           <div className="scanned-url">
-            <h3>QR Code Detected</h3>
+            <h4>Extracted URL:</h4>
             <div className="url-display">
               <code>{scannedUrl}</code>
             </div>
@@ -179,9 +248,12 @@ const QRScanner = () => {
             isAnalyzing={isAnalyzing}
           />
           
-          <button className="scan-again-btn" onClick={resetScanner}>
-            Scan Another QR Code
-          </button>
+          <div className="reset-section">
+            <button className="cyber-button cyber-button-secondary scan-again-btn" onClick={resetScanner}>
+              <Scan size={18} />
+              <span>Scan Another QR Code</span>
+            </button>
+          </div>
         </div>
       )}
     </div>
