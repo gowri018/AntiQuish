@@ -1,6 +1,5 @@
-// src/components/UrlExpander.js
 import React, { useState } from 'react';
-import { Link2, AlertTriangle, CheckCircle, XCircle, ExternalLink, Copy, Loader } from 'lucide-react';
+import { Link2, AlertTriangle, CheckCircle, XCircle, ExternalLink, Copy, Loader, Zap, Shield, Eye } from 'lucide-react';
 import ThreatAnalysis from './ThreatAnalysis';
 import './UrlExpander.css';
 
@@ -16,7 +15,8 @@ const UrlExpander = () => {
   const shorteners = [
     'bit.ly', 'tinyurl.com', 't.co', 'goo.gl', 'ow.ly', 'short.link',
     'tiny.cc', 'is.gd', 'buff.ly', 'bitly.com', 'shortened.link',
-    'cutt.ly', 'rebrand.ly', 'clickmeter.com', 'hyperurl.co'
+    'cutt.ly', 'rebrand.ly', 'clickmeter.com', 'hyperurl.co',
+    'v.gd', 'x.co', 'scrnch.me', 'filoops.info', 'sh.st', 'adf.ly'
   ];
 
   const expandUrl = async (url) => {
@@ -25,9 +25,8 @@ const UrlExpander = () => {
     setExpansionHistory([]);
     
     try {
-      // Validate URL format
       if (!url) {
-        throw new Error('Please enter a URL');
+        throw new Error('Please enter a URL to expand');
       }
 
       // Add protocol if missing
@@ -48,14 +47,15 @@ const UrlExpander = () => {
           step: 1,
           url: url,
           status: 'original',
-          message: 'This appears to be a direct URL (not shortened)'
+          message: 'Direct URL detected - no expansion needed',
+          timestamp: new Date().toLocaleTimeString()
         }]);
         setExpandedUrl(url);
         setShowAnalysis(true);
         return;
       }
 
-      // Simulate URL expansion process (in real app, this would call your backend)
+      // Simulate URL expansion process
       const expansionSteps = await simulateUrlExpansion(url);
       setExpansionHistory(expansionSteps);
       
@@ -64,62 +64,72 @@ const UrlExpander = () => {
       setShowAnalysis(true);
 
     } catch (err) {
-      setError(err.message || 'Failed to expand URL. Please check the URL and try again.');
+      setError(err.message || 'Failed to expand URL. Please check the URL format and try again.');
     } finally {
       setIsExpanding(false);
     }
   };
 
-  // Simulate URL expansion (replace with real API call)
+  // Simulate URL expansion (replace with real API call in production)
   const simulateUrlExpansion = async (url) => {
     const steps = [];
     
-    // Simulate multiple redirects
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
+    // Step 1: Original URL
+    await new Promise(resolve => setTimeout(resolve, 800));
     steps.push({
       step: 1,
       url: url,
       status: 'shortened',
-      message: 'Original shortened URL detected'
+      message: 'Shortened URL detected - beginning expansion',
+      timestamp: new Date().toLocaleTimeString()
     });
 
-    await new Promise(resolve => setTimeout(resolve, 800));
-    
-    // Simulate intermediate redirect
-    const intermediateUrl = url.replace(/bit\.ly|tinyurl\.com|t\.co/, 'redirect-service.com');
+    // Step 2: First redirect
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    const intermediateUrl = url.replace(/bit\.ly|tinyurl\.com|t\.co|goo\.gl/, 'redirect-tracker.net');
     steps.push({
       step: 2,
       url: intermediateUrl,
       status: 'redirect',
-      message: 'Following redirect...'
+      message: 'Following redirect chain...',
+      timestamp: new Date().toLocaleTimeString()
     });
 
-    await new Promise(resolve => setTimeout(resolve, 800));
-
-    // Simulate final destination
-    const finalUrls = [
-      'https://example-legitimate-site.com/page',
-      'https://suspicious-phishing-site.com/login',
-      'https://malicious-site.net/steal-credentials',
-      'https://legit-company.com/product-page',
-      'https://phishing-bank-fake.com/secure-login'
+    // Step 3: Final destination
+    await new Promise(resolve => setTimeout(resolve, 1200));
+    
+    // Simulate various types of final destinations
+    const finalDestinations = [
+      'https://legitimate-company.com/product-page',
+      'https://suspicious-login-page.com/secure-access',
+      'https://phishing-bank-replica.net/login-verify',
+      'https://malware-download-site.ru/free-software',
+      'https://fake-microsoft-update.com/urgent-security',
+      'https://scam-lottery-winner.info/claim-prize',
+      'https://trusted-news-site.com/article/tech-news',
+      'https://social-media-platform.com/user/profile'
     ];
     
-    const finalUrl = finalUrls[Math.floor(Math.random() * finalUrls.length)];
+    const finalUrl = finalDestinations[Math.floor(Math.random() * finalDestinations.length)];
     
     steps.push({
       step: 3,
       url: finalUrl,
       status: 'final',
-      message: 'Final destination reached'
+      message: 'Final destination reached',
+      timestamp: new Date().toLocaleTimeString()
     });
 
     return steps;
   };
 
-  const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text);
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      // Could add a toast notification here
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -138,45 +148,62 @@ const UrlExpander = () => {
   };
 
   return (
-    <div className="url-expander-container">
-      <div className="expander-header">
-        <Link2 size={48} className="header-icon" />
-        <h1>URL Expander & Analyzer</h1>
-        <p>Safely expand and analyze shortened URLs to see their real destination</p>
+    <div className="url-expander-page">
+      <div className="cyber-card expander-header-card">
+        <div className="header-content">
+          <div className="header-icon">
+            <Link2 size={64} className="main-icon" />
+            <div className="icon-glow"></div>
+          </div>
+          <h1 className="cyber-title">
+            <span className="title-main">URL EXPANDER</span>
+            <span className="title-sub">& THREAT ANALYZER</span>
+          </h1>
+          <p className="cyber-subtitle">
+            Safely expand shortened URLs and analyze them for potential security threats
+          </p>
+        </div>
       </div>
 
       {error && (
-        <div className="error-message">
-          <AlertTriangle size={20} />
+        <div className="error-message cyber-alert">
+          <AlertTriangle size={24} />
           <span>{error}</span>
         </div>
       )}
 
-      <div className="expander-form">
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <input
-              type="text"
-              value={inputUrl}
-              onChange={(e) => setInputUrl(e.target.value)}
-              placeholder="Enter shortened URL (e.g., bit.ly/abc123, tinyurl.com/xyz)"
-              className="url-input"
-              disabled={isExpanding}
-            />
+      <div className="cyber-card expander-form-card">
+        <h3 className="section-title">
+          <Zap size={24} />
+          URL EXPANSION INTERFACE
+        </h3>
+        <form onSubmit={handleSubmit} className="expander-form">
+          <div className="input-section">
+            <div className="input-wrapper">
+              <input
+                type="text"
+                value={inputUrl}
+                onChange={(e) => setInputUrl(e.target.value)}
+                placeholder="Enter shortened URL (e.g., bit.ly/abc123, tinyurl.com/xyz)"
+                className="cyber-input url-input"
+                disabled={isExpanding}
+              />
+              <div className="input-border-glow"></div>
+            </div>
             <button 
               type="submit" 
-              className="expand-btn"
+              className="cyber-button expand-button"
               disabled={isExpanding || !inputUrl.trim()}
             >
               {isExpanding ? (
                 <>
-                  <Loader size={18} className="spinning" />
-                  Expanding...
+                  <Loader size={20} className="spinning" />
+                  <span>EXPANDING...</span>
                 </>
               ) : (
                 <>
-                  <Link2 size={18} />
-                  Expand URL
+                  <Link2 size={20} />
+                  <span>EXPAND & ANALYZE</span>
                 </>
               )}
             </button>
@@ -186,33 +213,40 @@ const UrlExpander = () => {
 
       {/* Expansion History */}
       {expansionHistory.length > 0 && (
-        <div className="expansion-history">
-          <h3>URL Expansion Trace</h3>
-          <div className="expansion-steps">
+        <div className="cyber-card expansion-history-card">
+          <h3 className="section-title">
+            <Eye size={24} />
+            URL EXPANSION TRACE
+          </h3>
+          <div className="expansion-timeline">
             {expansionHistory.map((step, index) => (
               <div key={index} className={`expansion-step ${step.status}`}>
                 <div className="step-indicator">
-                  {step.status === 'shortened' && <Link2 size={16} />}
-                  {step.status === 'redirect' && <ExternalLink size={16} />}
-                  {step.status === 'final' && <CheckCircle size={16} />}
-                  {step.status === 'original' && <CheckCircle size={16} />}
+                  <div className="step-number">{step.step}</div>
+                  <div className="step-icon">
+                    {step.status === 'shortened' && <Link2 size={18} />}
+                    {step.status === 'redirect' && <ExternalLink size={18} />}
+                    {step.status === 'final' && <CheckCircle size={18} />}
+                    {step.status === 'original' && <CheckCircle size={18} />}
+                  </div>
                 </div>
                 <div className="step-content">
                   <div className="step-header">
-                    <span className="step-number">Step {step.step}</span>
                     <span className="step-status">{step.message}</span>
+                    <span className="step-time">{step.timestamp}</span>
                   </div>
                   <div className="step-url">
-                    <code>{step.url}</code>
+                    <code className="url-code">{step.url}</code>
                     <button 
                       onClick={() => copyToClipboard(step.url)}
-                      className="copy-btn"
+                      className="cyber-icon-button copy-btn"
                       title="Copy URL"
                     >
-                      <Copy size={14} />
+                      <Copy size={16} />
                     </button>
                   </div>
                 </div>
+                {index < expansionHistory.length - 1 && <div className="step-connector"></div>}
               </div>
             ))}
           </div>
@@ -221,28 +255,33 @@ const UrlExpander = () => {
 
       {/* Final Result */}
       {expandedUrl && (
-        <div className="expanded-result">
-          <h3>Final Destination</h3>
-          <div className="final-url">
-            <code>{expandedUrl}</code>
+        <div className="cyber-card final-result-card">
+          <h3 className="section-title">
+            <Shield size={24} />
+            FINAL DESTINATION
+          </h3>
+          <div className="final-url-container">
+            <div className="final-url">
+              <code className="final-url-text">{expandedUrl}</code>
+            </div>
             <div className="url-actions">
               <button 
                 onClick={() => copyToClipboard(expandedUrl)}
-                className="action-btn copy"
+                className="cyber-button action-btn copy-action"
                 title="Copy URL"
               >
-                <Copy size={16} />
-                Copy
+                <Copy size={18} />
+                <span>COPY</span>
               </button>
               <a 
                 href={expandedUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="action-btn visit"
+                className="cyber-button action-btn visit-action"
                 title="Visit URL (Use Caution)"
               >
-                <ExternalLink size={16} />
-                Visit
+                <ExternalLink size={18} />
+                <span>VISIT</span>
               </a>
             </div>
           </div>
@@ -260,23 +299,38 @@ const UrlExpander = () => {
 
       {/* Reset Button */}
       {(expandedUrl || error) && (
-        <button className="reset-btn" onClick={resetExpander}>
-          Analyze Another URL
-        </button>
+        <div className="reset-section">
+          <button className="cyber-button reset-btn" onClick={resetExpander}>
+            <Zap size={18} />
+            <span>ANALYZE ANOTHER URL</span>
+          </button>
+        </div>
       )}
 
       {/* Info Section */}
-      <div className="info-section">
-        <h3>Supported URL Shorteners</h3>
-        <div className="shortener-list">
+      <div className="cyber-card info-section-card">
+        <h3 className="section-title">
+          <Shield size={24} />
+          SUPPORTED URL SHORTENERS
+        </h3>
+        <div className="shortener-grid">
           {shorteners.map((shortener, index) => (
             <span key={index} className="shortener-tag">{shortener}</span>
           ))}
         </div>
-        <p className="info-text">
-          <strong>Safety Note:</strong> Always be cautious when visiting expanded URLs, 
-          especially if they lead to login pages or request personal information.
-        </p>
+        <div className="safety-notice">
+          <div className="notice-icon">
+            <AlertTriangle size={24} />
+          </div>
+          <div className="notice-content">
+            <h4>SECURITY PROTOCOL</h4>
+            <p>
+              Always exercise extreme caution when visiting expanded URLs. Never enter sensitive 
+              information on suspicious websites. This tool provides analysis but cannot guarantee 
+              complete safety. When in doubt, avoid clicking the link.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
