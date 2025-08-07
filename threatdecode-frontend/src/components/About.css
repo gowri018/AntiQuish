@@ -1,23 +1,95 @@
 .about-container {
-  max-width: 500px;
-  margin: 2.5rem auto;
-  background: rgba(21, 37, 56, 0.99);
-  padding: 2.1rem;
-  border-radius: 15px;
-  box-shadow: 0 3px 16px 0 #00ffdfa7, 0 1px 20px 0 #0d81ca22;
-  border: 1.5px solid #19ffdbaa;
-  color: #a6ffe7;
-  font-size: 1.09rem;
-  backdrop-filter: blur(3px);
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  background: rgba(20, 30, 50, 0.85);
+  color: #a0f0e0;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #0ef1d6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.about-container ul {
-  list-style: disc inside;
-  margin: 1.2rem 0;
-  color: #7cffdf;
+
+.about-header h1 {
+  font-size: 2.6rem;
+  text-align: center;
+  margin-bottom: 0.3rem;
+  color: #0ff2d8;
+  text-shadow: 0 0 8px #0ff2d8c0;
 }
-.about-container h4 {
-  font-size: 1.15rem;
-  margin-top: 2.2rem;
-  color: #15ffa1;
-  text-shadow: 0 0 9px #0ed1a8;
+
+.about-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.feature-card {
+  background: rgba(10, 25, 40, 0.7);
+  border-radius: 10px;
+  padding: 1.1rem;
+  box-shadow: 0 0 8px #0affd4;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  box-shadow: 0 0 20px #0affd4;
+}
+
+.feature-icon {
+  margin-bottom: 0.75rem;
+  color: #0ffbd8;
+}
+
+.feature-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  color: #33f9de;
+}
+
+.steps {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.step {
+  background: rgba(15, 40, 60, 0.75);
+  border-radius: 10px;
+  padding: 1rem 1.3rem;
+  width: 220px;
+  box-shadow: 0 0 10px #13d6cf;
+  display: flex;
+  gap: 1rem;
+}
+
+.step-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #00f1e8;
+  text-shadow: 0 0 8px #19fff3;
+}
+
+.step-content h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #00f7f0;
+}
+
+.safety-tips ul {
+  list-style-type: disc;
+  padding-left: 1.3rem;
+  color: #7ffcf5;
+  font-size: 1.05rem;
+  margin-bottom: 3rem;
 }
