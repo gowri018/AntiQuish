@@ -1,6 +1,7 @@
+// src/components/Header.js
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Shield, Home, Info, Github } from 'lucide-react';
+import { Shield, Home, Info, Github, Link2 } from 'lucide-react'; // Added Link2 icon
 import './Header.css';
 
 const Header = () => {
@@ -21,6 +22,14 @@ const Header = () => {
           >
             <Home size={18} />
             Scanner
+          </Link>
+          {/* NEW NAVIGATION LINK */}
+          <Link 
+            to="/url-expander" 
+            className={`nav-link ${location.pathname === '/url-expander' ? 'active' : ''}`}
+          >
+            <Link2 size={18} />
+            URL Expander
           </Link>
           <Link 
             to="/about" 
