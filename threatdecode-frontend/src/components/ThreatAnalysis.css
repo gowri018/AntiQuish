@@ -258,4 +258,75 @@
   .analysis-details {
     gap: 1.5rem;
   }
+
+  /* Add to existing ThreatAnalysis.css */
+
+.detected-threats {
+  margin-top: 0.5rem;
+  color: #ef4444;
+  font-size: 0.9rem;
+}
+
+.check-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.impact-badge {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.impact-badge.low {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.impact-badge.medium {
+  background: rgba(234, 179, 8, 0.2);
+  color: #eab308;
+}
+
+.impact-badge.high {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.recommendations-list li.high {
+  border-left-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.recommendations-list li.moderate {
+  border-left-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.05);
+}
+
+.recommendations-list li.low {
+  border-left-color: #eab308;
+  background-color: rgba(234, 179, 8, 0.05);
+}
+
+.visit-url-btn.high {
+  background-color: #7f1d1d !important;
+  cursor: not-allowed;
+}
+
+.visit-url-btn.moderate {
+  background-color: #92400e;
+}
+
+.visit-url-btn.low {
+  background-color: #a16207;
+}
+
+.visit-url-btn.safe {
+  background-color: #166534;
+}
+
 }
