@@ -1,110 +1,43 @@
-/* Results.css - Results Page Styles */
-
 .results-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 0;
+  background: rgba(15, 30, 58, 0.95);
+  max-width: 540px;
+  margin: 2.5rem auto;
+  padding: 2.2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 22px 0 #07ffd91b, 0 1px 21px 0 #17998944;
+  border: 1.5px solid #13fbe2ce;
+  color: #defdfd;
+  backdrop-filter: blur(2px);
+}
+.results-section {
+  margin: 1.38rem 0;
 }
 
-.results-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
+.results-url {
+  font-family: 'Cascadia Code', 'Fira Mono', monospace;
+  color: #0bee9e;
+  font-size: 1.09rem;
+  margin-top: 0.37rem;
+  word-break: break-all;
+  text-shadow: 0 0 4px #1afeef;
 }
 
-.back-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #3b82f6;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.back-link:hover {
-  color: #2563eb;
-}
-
-.results-header h1 {
-  font-size: 2rem;
+.results-risk {
   font-weight: 700;
-  color: #1e293b;
+  font-size: 1.28rem;
+  margin-top: 0.3rem;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 6px #09b2e6;
 }
-
-.no-results {
-  text-align: center;
-  padding: 4rem 2rem;
-  background-color: white;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+.results-safe {
+  color: #09fcaf;
+  text-shadow: 0 0 20px #10ffe2;
 }
-
-.no-results h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #374151;
-  margin: 1rem 0;
+.results-moderate {
+  color: #ffe959;
+  text-shadow: 0 0 7px #b5ad60;
 }
-
-.no-results p {
-  color: #6b7280;
-  margin-bottom: 2rem;
-}
-
-.back-to-scanner {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: #3b82f6;
-  color: white;
-  text-decoration: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
-}
-
-.back-to-scanner:hover {
-  background-color: #2563eb;
-}
-
-.results-content {
-  background-color: white;
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.analysis-summary h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 1rem;
-}
-
-.analysis-summary p {
-  color: #6b7280;
-  line-height: 1.6;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .results-container {
-    padding: 1rem 0;
-  }
-  
-  .results-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .results-header h1 {
-    font-size: 1.75rem;
-  }
-  
-  .results-content {
-    padding: 1.5rem;
-  }
+.results-high {
+  color: #ff2852;
+  text-shadow: 0 0 16px #ff15eb;
 }
