@@ -1,208 +1,35 @@
-/* QRScanner.css - QR Scanner Component Styles */
+.qrscanner-container {
+  max-width: 420px;
+  margin: 2.5rem auto;
+  text-align: center;
+  background: rgba(16, 37, 72, 0.82);
+  padding: 2rem 1.5rem 2.5rem 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 36px 0 #25f7e6bb, 0 2px 32px 0 #1b0d2c44;
+  border: 1.5px solid #00fff7a9;
+  backdrop-filter: blur(1.5px);
+  animation: cardGlow 2.4s ease-in-out infinite alternate;
+}
 
-.qr-scanner-container {
-  max-width: 800px;
+@keyframes cardGlow {
+  0% { box-shadow: 0 6px 36px 0 #31ffe9aa, 0 2px 32px 0 #11b89322; }
+  100% { box-shadow: 0 8px 40px 0 #00ffeedd, 0 2px 38px 0 #1b0d2c55; }
+}
+
+.qr-reader-view {
   margin: 0 auto;
-  padding: 2rem 0;
+  width: 270px;
+  height: 270px;
+  border: 2.5px solid #2fffd7;
+  background: #0d192e;
+  border-radius: 16px;
+  box-shadow: 0 0 24px #07ffd977;
 }
 
-.scanner-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.scanner-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin-bottom: 0.5rem;
-}
-
-.scanner-header p {
-  font-size: 1.125rem;
-  color: #64748b;
-}
-
-.scanner-modes {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-
-.mode-button {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 1.5rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 0.75rem;
-  background-color: white;
-  color: #64748b;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.mode-button:hover {
-  border-color: #3b82f6;
-  color: #3b82f6;
-}
-
-.mode-button.active {
-  border-color: #3b82f6;
-  background-color: #3b82f6;
-  color: white;
-}
-
-.camera-scanner {
-  background-color: white;
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
-}
-
-.scanner-placeholder {
-  text-align: center;
-  padding: 3rem 2rem;
-}
-
-.camera-icon {
-  color: #94a3b8;
-  margin-bottom: 1rem;
-}
-
-.scanner-placeholder h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 0.5rem;
-}
-
-.scanner-placeholder p {
-  color: #6b7280;
-  margin-bottom: 2rem;
-}
-
-.start-scan-btn {
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
-  font-size: 1.125rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.start-scan-btn:hover {
-  background-color: #2563eb;
-}
-
-.scanner-active {
-  text-align: center;
-}
-
-.scanner-active #qr-scanner-container {
-  margin-bottom: 1rem;
-  display: inline-block;
-}
-
-.stop-scan-btn {
-  background-color: #ef4444;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.stop-scan-btn:hover {
-  background-color: #dc2626;
-}
-
-.file-upload-section {
-  background-color: white;
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
-}
-
-.scan-results {
-  background-color: white;
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
-}
-
-.scanned-url {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.scanned-url h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 1rem;
-}
-
-.url-display {
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.5rem;
-  padding: 1rem;
-}
-
-.scan-again-btn {
-  width: 100%;
-  background-color: #6b7280;
-  color: white;
-  border: none;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  margin-top: 2rem;
-}
-
-.scan-again-btn:hover {
-  background-color: #4b5563;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .qr-scanner-container {
-    padding: 1rem 0;
-  }
-  
-  .scanner-header h1 {
-    font-size: 2rem;
-  }
-  
-  .scanner-modes {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .mode-button {
-    width: 100%;
-    max-width: 300px;
-    justify-content: center;
-  }
-  
-  .camera-scanner,
-  .file-upload-section,
-  .scan-results {
-    padding: 1.5rem;
-  }
+.upload-separator {
+  margin: 24px 0 6px 0;
+  font-size: 1.14rem;
+  color: #43fff9;
+  font-family: 'Segoe UI', 'Roboto', monospace;
+  letter-spacing: 1.1px;
 }

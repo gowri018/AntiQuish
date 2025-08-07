@@ -1,12 +1,13 @@
-/* Header.css - Header Component Styles */
-
-.app-header {
-  background-color: white;
-  border-bottom: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+.cyber-header {
+  background: rgba(10, 10, 10, 0.95);
+  border-bottom: 2px solid var(--cyber-primary);
+  backdrop-filter: blur(15px);
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 100;
+  box-shadow: 
+    0 0 20px var(--cyber-primary),
+    inset 0 -1px 0 rgba(0, 255, 255, 0.3);
 }
 
 .header-content {
@@ -16,59 +17,117 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
+  position: relative;
 }
 
-.logo {
+.cyber-logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.8rem;
   text-decoration: none;
-  color: #1e293b;
-  font-weight: 700;
-  font-size: 1.25rem;
+  transition: all 0.3s ease;
 }
 
 .logo-icon {
-  color: #3b82f6;
+  color: var(--cyber-primary);
+  filter: drop-shadow(0 0 10px var(--cyber-primary));
+  animation: logo-pulse 2s ease-in-out infinite alternate;
 }
 
-.logo:hover {
-  color: #3b82f6;
+@keyframes logo-pulse {
+  0% { filter: drop-shadow(0 0 10px var(--cyber-primary)); }
+  100% { filter: drop-shadow(0 0 20px var(--cyber-primary)) drop-shadow(0 0 30px var(--cyber-secondary)); }
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo-main {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--cyber-primary);
+  text-shadow: 0 0 10px var(--cyber-primary);
+  letter-spacing: 2px;
+}
+
+.logo-sub {
+  font-family: 'Orbitron', monospace;
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--cyber-secondary);
+  text-shadow: 0 0 8px var(--cyber-secondary);
+  letter-spacing: 3px;
+  margin-left: 0.2rem;
+}
+
+.cyber-logo:hover .logo-icon {
+  transform: rotate(360deg);
+  transition: transform 0.8s ease;
 }
 
 .nav-menu {
   display: flex;
   gap: 2rem;
-}
-
-.nav-link {
-  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: #64748b;
+}
+
+.cyber-nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--cyber-text);
   text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem 0;
-  transition: color 0.2s ease;
+  font-family: 'Orbitron', monospace;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
   position: relative;
+  overflow: hidden;
 }
 
-.nav-link:hover {
-  color: #3b82f6;
-}
-
-.nav-link.active {
-  color: #3b82f6;
-}
-
-.nav-link.active::after {
+.cyber-nav-link::before {
   content: '';
   position: absolute;
-  bottom: -1rem;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #3b82f6;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.cyber-nav-link:hover::before {
+  left: 100%;
+}
+
+.cyber-nav-link:hover {
+  color: var(--cyber-primary);
+  text-shadow: 0 0 10px var(--cyber-primary);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  background: rgba(0, 255, 255, 0.05);
+}
+
+.cyber-nav-link.active {
+  color: var(--cyber-accent);
+  text-shadow: 0 0 15px var(--cyber-accent);
+  background: rgba(255, 255, 0, 0.1);
+  box-shadow: 
+    0 0 20px rgba(255, 255, 0, 0.3),
+    inset 0 0 20px rgba(255, 255, 0, 0.05);
+  border: 1px solid var(--cyber-accent);
+}
+
+.cyber-nav-link span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
 }
 
 .header-actions {
@@ -77,43 +136,123 @@
   gap: 1rem;
 }
 
-.github-link {
+.cyber-github-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  color: #64748b;
-  border-radius: 0.5rem;
-  transition: all 0.2s ease;
+  width: 45px;
+  height: 45px;
+  color: var(--cyber-text);
+  border: 1px solid var(--cyber-primary);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: rgba(0, 255, 255, 0.05);
 }
 
-.github-link:hover {
-  color: #3b82f6;
-  background-color: #f1f5f9;
+.cyber-github-link:hover {
+  color: var(--cyber-primary);
+  box-shadow: 0 0 15px var(--cyber-primary);
+  background: rgba(0, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
-/* Responsive Design */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--cyber-primary);
+  color: var(--cyber-primary);
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+  box-shadow: 0 0 10px var(--cyber-primary);
+  background: rgba(0, 255, 255, 0.1);
+}
+
+.header-glow {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--cyber-primary) 20%, 
+    var(--cyber-secondary) 50%, 
+    var(--cyber-accent) 80%, 
+    transparent 100%);
+  animation: glow-sweep 3s ease-in-out infinite;
+}
+
+@keyframes glow-sweep {
+  0%, 100% { opacity: 0.3; transform: scaleX(0.5); }
+  50% { opacity: 1; transform: scaleX(1); }
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
   .header-content {
     padding: 1rem;
   }
   
+  .mobile-menu-toggle {
+    display: block;
+  }
+  
   .nav-menu {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.98);
+    border-top: 1px solid var(--cyber-primary);
+    flex-direction: column;
+    padding: 2rem;
     gap: 1rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(15px);
   }
   
-  .nav-link {
-    font-size: 0.875rem;
+  .nav-menu.mobile-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
   }
   
-  .logo {
-    font-size: 1.125rem;
+  .cyber-nav-link {
+    width: 100%;
+    padding: 1.2rem;
+    justify-content: center;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    background: rgba(0, 255, 255, 0.05);
+  }
+  
+  .logo-main {
+    font-size: 1.2rem;
+  }
+  
+  .logo-sub {
+    font-size: 0.7rem;
   }
 }
 
-@media (max-width: 640px) {
-  .nav-menu {
-    display: none;
+@media (max-width: 480px) {
+  .logo-main {
+    font-size: 1rem;
+  }
+  
+  .logo-sub {
+    font-size: 0.6rem;
+  }
+  
+  .cyber-github-link {
+    width: 40px;
+    height: 40px;
   }
 }

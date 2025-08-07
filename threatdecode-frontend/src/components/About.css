@@ -1,157 +1,95 @@
-/* About.css - About Page Styles */
-
 .about-container {
   max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.about-header {
-  text-align: center;
-  margin-bottom: 3rem;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  background: rgba(20, 30, 50, 0.85);
+  color: #a0f0e0;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #0ef1d6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .about-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin-bottom: 1rem;
+  font-size: 2.6rem;
+  text-align: center;
+  margin-bottom: 0.3rem;
+  color: #0ff2d8;
+  text-shadow: 0 0 8px #0ff2d8c0;
 }
 
 .about-subtitle {
-  font-size: 1.125rem;
-  color: #64748b;
-  line-height: 1.6;
-}
-
-.about-content {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-}
-
-.intro-section h2,
-.features-section h2,
-.how-it-works h2,
-.safety-tips h2 {
-  font-size: 1.875rem;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 1.5rem;
-}
-
-.intro-section p {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #4b5563;
-  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-bottom: 2rem;
 }
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .feature-card {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  background: rgba(10, 25, 40, 0.7);
+  border-radius: 10px;
+  padding: 1.1rem;
+  box-shadow: 0 0 8px #0affd4;
   text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  box-shadow: 0 0 20px #0affd4;
 }
 
 .feature-icon {
-  color: #3b82f6;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  color: #0ffbd8;
 }
 
 .feature-card h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 0.75rem;
-}
-
-.feature-card p {
-  color: #6b7280;
-  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  color: #33f9de;
 }
 
 .steps {
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .step {
+  background: rgba(15, 40, 60, 0.75);
+  border-radius: 10px;
+  padding: 1rem 1.3rem;
+  width: 220px;
+  box-shadow: 0 0 10px #13d6cf;
   display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
+  gap: 1rem;
 }
 
 .step-number {
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  background-color: #3b82f6;
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #00f1e8;
+  text-shadow: 0 0 8px #19fff3;
 }
 
 .step-content h3 {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 0.5rem;
-}
-
-.step-content p {
-  color: #6b7280;
-  line-height: 1.6;
+  margin: 0;
+  font-size: 1.25rem;
+  color: #00f7f0;
 }
 
 .safety-tips ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 1.5rem;
-}
-
-.safety-tips li {
-  padding: 1rem;
-  background-color: #f8fafc;
-  border-left: 4px solid #3b82f6;
-  margin-bottom: 0.75rem;
-  border-radius: 0 0.25rem 0.25rem 0;
-  color: #374151;
-  line-height: 1.6;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .about-container {
-    padding: 1rem 0;
-  }
-  
-  .about-header h1 {
-    font-size: 2rem;
-  }
-  
-  .features-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .feature-card {
-    padding: 1.5rem;
-  }
-  
-  .step {
-    gap: 1rem;
-  }
+  list-style-type: disc;
+  padding-left: 1.3rem;
+  color: #7ffcf5;
+  font-size: 1.05rem;
+  margin-bottom: 3rem;
 }
