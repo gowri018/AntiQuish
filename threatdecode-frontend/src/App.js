@@ -7,6 +7,7 @@ import QRScanner from "./components/QRScanner";
 import ThreatAnalysis from "./components/ThreatAnalysis";
 import Results from "./components/Results";
 import About from "./components/About";
+import UrlExpander from "./components/UrlExpander"; // NEW IMPORT
 
 import "./App.css";
 
@@ -50,6 +51,8 @@ function App() {
               }
             />
             <Route path="/about" element={<About />} />
+            {/* NEW ROUTE */}
+            <Route path="/url-expander" element={<UrlExpander />} />
             <Route path="*" element={<QRScanner onUrlScanned={handleUrlScanned} />} />
           </Routes>
         </main>
